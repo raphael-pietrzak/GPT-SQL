@@ -1,11 +1,14 @@
 
+from llm import Llm
 
 class Main:
     def __init__(self):
-        pass
+        self.llm = Llm()
 
     def run(self):
-        pass
+        output = self.llm.generate()
+        print(output)
+        
 
 
 if __name__ == '__main__':

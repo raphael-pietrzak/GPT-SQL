@@ -13,5 +13,6 @@ Text to database using LLM
 # How to use
 
 ``` bash
+pip install -r requirements.txt
 python3 main.py
 ```
