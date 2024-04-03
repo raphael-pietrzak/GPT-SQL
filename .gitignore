@@ -1,4 +1,5 @@
 
 **/*.bin
+models/*
 .DS_Store
 
