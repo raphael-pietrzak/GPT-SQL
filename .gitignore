@@ -2,4 +2,4 @@
 **/*.bin
 models/*
 .DS_Store
-
+api_key.txt
