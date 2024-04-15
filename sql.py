@@ -1,6 +1,12 @@
 import json
 import sqlite3
 
+VALUES = {str : "TEXT",
+         int : "INTEGER",
+         list : "TEXT",
+         range : "TEXT",
+         bool : "BOOLEAN"
+}
 
 class JsonToDb:
     """
@@ -25,12 +31,13 @@ class JsonToDb:
         insert_into_db(): Inserts the JSON data into the table.
     """
 
-    def __init__(self, json_file_path, db_path, table_name):
+    def __init__(self, json_file_path, db_path, table_name, attributes):
         self.json_file_path = json_file_path
         self.db_path = db_path
         self.table_name = table_name
         self.data = self.read_json()
         self.headers = self.get_headers()
+        self.attributes = attributes
 
     def read_json(self):
         try:
@@ -44,15 +51,29 @@ class JsonToDb:
             print("Erreur lors de la lecture du fichier JSON.")
             return None
 
-    def create_table(self):
+
+    # def create_table_from_JSON(self):
+    #     try:
+    #         conn = sqlite3.connect(self.db_path)
+    #         c = conn.cursor()
+    #         columns_str = ", ".join(f"{header} TEXT" for header in self.headers)
+    #         sql_query = f"CREATE TABLE IF NOT EXISTS {self.table_name} ({columns_str})"
+    #         c.execute(sql_query)
+    #     except sqlite3.Error as e:
+    #         print("Erreur lors de l'insertion des données dans la base de données :", e)
+
+    def create_table_from_attributes(self):
         try:
             conn = sqlite3.connect(self.db_path)
             c = conn.cursor()
-            columns_str = ", ".join(f"{header} TEXT" for header in self.headers)
+            columns_str = ""
+            for key, value in self.attributes:
+                columns_str = columns_str + ", " + str(value) + VALUES[key]
             sql_query = f"CREATE TABLE IF NOT EXISTS {self.table_name} ({columns_str})"
             c.execute(sql_query)
         except sqlite3.Error as e:
             print("Erreur lors de l'insertion des données dans la base de données :", e)
+
 
     def get_headers(self):
         return list(self.data[0].keys())
