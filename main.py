@@ -1,16 +1,9 @@
-from text import Text
-
 class Main:
     def __init__(self):
-        self.text = Text()
+        pass
 
     def run(self):
-
-        # Text extraction & verification testing
-        path = ""
-        self.text.initialize(path)
-        print(self.text.content)
-
+        pass
 
 if __name__ == '__main__':
     main = Main()
