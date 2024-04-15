@@ -40,7 +40,7 @@ class Page_Home:
         # If "Suivant" button clicked
         if next_button :
             self.save_inputs(file, relation_scheme_name)
-            #st.switch_page("pages/2_page_attributes.py")
+            st.switch_page("pages/2_page_attributes.py")
 
 page = Page_Home()
 page.run()
