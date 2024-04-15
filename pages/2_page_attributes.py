@@ -1,5 +1,7 @@
 import streamlit as st
+import pandas as pd
 from entry import Entry
+
 POSSIBLE_VALUES = ["Non spécifié", "Texte seulement", "Nombre seulement", "Intervalle", "Booléen", "Personalisé"]
 
 class Page_Attributes:
@@ -60,7 +62,7 @@ class Page_Attributes:
             if(self.attribute_domain == "Non spécifié"):
                 self.name_button = "Confirmer"
                 st.write(":warning: :orange[Un domaine non spécifié acceptera toutes les valeurs et n'affinera pas le résultat]")
-            
+           
             # Submit button section
             st.write(" ") # Spacing
             submit_add_attribute_form = st.form_submit_button(self.name_button)
